@@ -1,0 +1,140 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: white;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  max-width: 400px;
+  width: 100%;
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.app::before {
+  content: 'WORDLE';
+  display: block;
+  text-align: center;
+  font-size: 2.5em;
+  font-weight: 800;
+  color: #90EE90;
+  margin-bottom: 30px;
+  letter-spacing: 3px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.row {
+  display: flex !important;
+  gap: 8px !important;
+  margin-bottom: 12px !important;
+  justify-content: center;
+}
+
+.block {
+  width: 50px !important;
+  height: 50px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  font-size: 24px !important;
+  font-weight: 700 !important;
+  border: 2px solid #e0e0e0 !important;
+  background-color: #ffffff !important;
+  color: #333 !important;
+  border-radius: 8px !important;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  cursor: default;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07) !important;
+}
+
+.block:not(:empty) {
+  border-color: #667eea !important;
+  background-color: #f0f4ff !important;
+  transform: scale(1.05);
+}
+
+/* Correct letter - green */
+.block[style*="rgb(106, 170, 100)"],
+.block[style*="#6aaa64"] {
+  background-color: #6aaa64 !important;
+  border-color: #6aaa64 !important;
+  color: white !important;
+  animation: popIn 0.5s ease-out;
+}
+
+/* Wrong spot - yellow */
+.block[style*="rgb(201, 180, 88)"],
+.block[style*="#c9b458"] {
+  background-color: #c9b458 !important;
+  border-color: #c9b458 !important;
+  color: white !important;
+  animation: popIn 0.5s ease-out;
+}
+
+/* Not in word - gray */
+.block[style*="rgb(120, 124, 126)"],
+.block[style*="#787c7e"] {
+  background-color: #787c7e !important;
+  border-color: #787c7e !important;
+  color: white !important;
+  animation: popIn 0.5s ease-out;
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0.8);
+  }
+  75% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .app {
+    padding: 20px;
+    max-width: 90vw;
+  }
+
+  .app::before {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+
+  .row {
+    gap: 6px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .block {
+    width: 45px !important;
+    height: 45px !important;
+    font-size: 20px !important;
+  }
+}
